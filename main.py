@@ -18,10 +18,6 @@ def predict():
         try:
             json_ = request.json
             print(json_)
-            lr = joblib.load("model.pkl")  # Load "model.pkl"
-            print('Model loaded')
-            model_columns = joblib.load("model_cols.pkl")  # Load "model_columns.pkl"
-            print('Model columns loaded')
             query = pd.get_dummies(pd.DataFrame(json_))
             query = query.reindex(columns=model_columns, fill_value=0)
 
@@ -35,6 +31,9 @@ def predict():
 
 if __name__ == '__main__':
 
-
+    lr = joblib.load("model.pkl") # Load "model.pkl"
+    print ('Model loaded')
+    model_columns = joblib.load("model_cols.pkl") # Load "model_columns.pkl"
+    print ('Model columns loaded')
 
     app.run(debug=True, port=33507)
