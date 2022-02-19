@@ -9,6 +9,9 @@ import numpy as np
 
 # Your API definition
 app = Flask(__name__)
+@app.route("/", methods=['GET'])
+def hello():
+    return "hey"
 
 @app.route('/predict', methods=['POST'])
 def predict():
